@@ -14,17 +14,28 @@ public class DiodeDisplay extends Display {
     public DiodeDisplay(DisplayData data, int diodes) {
         super(300, 300, data);
         this.circles = diodes;
+        addMouseWheelListener((mouseWheelEvent) -> {
+            if (mouseWheelEvent.getUnitsToScroll() < 0 && circles < 50) {
+                circles++;
+            } else if (circles > 1) {
+                circles--;
+            } else {
+                return;
+            }
+            repaint();
+        });
     }
 
     @Override
     public void draw(Graphics g) {
         int temp = getHeight() / (circles + 1);
+        int drawWidth = temp > getWidth() / 8 ? temp : getWidth() / 8;
         int y = 0;
-        int x = getWidth() / 2 - temp / 2;
+        int x = getWidth() / 2 - drawWidth / 2;
         for (int i = 0; i < circles; i++) {
             y += temp / (circles + 1);
             g.setColor(getColor(i));
-            g.fillOval(x, y, temp, temp);
+            g.fillOval(x, y, drawWidth, temp);
             y += temp;
         }
     }
