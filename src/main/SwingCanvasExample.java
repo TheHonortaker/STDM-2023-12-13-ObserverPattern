@@ -4,6 +4,7 @@ import main.buttons.ButtonCancel;
 import main.buttons.ButtonStartCountdown;
 import main.buttons.ButtonStartRandom;
 import main.displays.*;
+import main.util.SegmentDrawer;
 
 import javax.swing.*;
 import java.awt.*;
