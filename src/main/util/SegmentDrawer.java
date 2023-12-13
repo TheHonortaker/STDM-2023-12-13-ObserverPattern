@@ -25,7 +25,7 @@ public class SegmentDrawer {
         y = outerY + outerH / 6;
         w = outerW - outerW / 6 * 2;
         h = outerH - outerH / 6 * 2;
-        s = w / 15;
+        s = w / 10;
         arc = s / 2;
     }
 
@@ -86,9 +86,9 @@ public class SegmentDrawer {
         g.drawOval(x + circleDiameter / 2, y + circleDiameter / 2, circleDiameter, circleDiameter);
         g.drawOval((int) (x + w - circleDiameter * 1.5), (int) (y + h - circleDiameter * 1.5), circleDiameter, circleDiameter);
         var p = new Polygon();
-        p.addPoint(x + w - w / 15, y);
+        p.addPoint(x + w - s, y);
         p.addPoint(x + w, y);
-        p.addPoint(x + w / 15, y + h);
+        p.addPoint(x + s, y + h);
         p.addPoint(x, y + h);
         g.fillPolygon(p);
     }
