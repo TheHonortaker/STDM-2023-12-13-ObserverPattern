@@ -18,7 +18,7 @@ public class SwingCanvasExample extends JFrame {
 
     public SwingCanvasExample(DisplayData data) {
         setTitle("Java Swing Canvas Beispiel");
-        setSize(1220, 328);
+        setSize(1210, 328);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -38,7 +38,7 @@ public class SwingCanvasExample extends JFrame {
         controlPanel.add(new ButtonStartRandom(data));
         controlPanel.add(new ButtonCancel(data));
         // MAIN PANEL
-        JPanel mainPanel = new JPanel(new GridLayout(1, 4, 10, 10));
+        JPanel mainPanel = new JPanel(new GridLayout(1, 4, 5, 5));
         mainPanel.setSize(this.getSize());
         mainPanel.setBackground(Color.DARK_GRAY);
         mainPanel.add(new DiodeDisplay(data));
