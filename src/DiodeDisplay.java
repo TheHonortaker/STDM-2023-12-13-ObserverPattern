@@ -1,13 +1,13 @@
 import java.awt.*;
 
-public class DiodeIndicator extends Display {
+public class DiodeDisplay extends Display {
     private int circles;
 
-    public DiodeIndicator(DisplayData data) {
+    public DiodeDisplay(DisplayData data) {
         this(data, 5);
     }
 
-    public DiodeIndicator(DisplayData data, int diodes) {
+    public DiodeDisplay(DisplayData data, int diodes) {
         super(300, 300, data);
         this.circles = diodes;
     }
@@ -18,7 +18,7 @@ public class DiodeIndicator extends Display {
         int y = 0;
         int x = getWidth() / 2 - temp / 2;
         for (int i = 0; i < circles; i++) {
-            y += temp / (circles + 2);
+            y += temp / (circles + 1);
             g.setColor(getColor(i));
             g.fillOval(x, y, temp, temp);
             y += temp;

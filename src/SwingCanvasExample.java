@@ -22,7 +22,7 @@ public class SwingCanvasExample extends JFrame {
         JPanel mainPanel = new JPanel(new GridLayout(1, 3, 10, 10));
         mainPanel.setSize(this.getSize());
         mainPanel.setBackground(Color.DARK_GRAY);
-        mainPanel.add(new DiodeIndicator(data));
+        mainPanel.add(new DiodeDisplay(data));
         mainPanel.add(new SevenElementsDisplay(data));
         mainPanel.add(new AnalogDisplay(data));
         mainPanel.add(slider);
