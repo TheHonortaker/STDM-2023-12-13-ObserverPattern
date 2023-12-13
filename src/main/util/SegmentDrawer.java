@@ -25,7 +25,7 @@ public class SegmentDrawer {
         y = outerY + outerH / 6;
         w = outerW - outerW / 6 * 2;
         h = outerH - outerH / 6 * 2;
-        s = w / 10;
+        s = w / 8;
         arc = s / 2;
     }
 
@@ -82,15 +82,22 @@ public class SegmentDrawer {
 
     private void drawPercentSign(Graphics g) {
         g.setColor(active);
-        int circleDiameter = outerW / 5;
-        g.drawOval(x + circleDiameter / 2, y + circleDiameter / 2, circleDiameter, circleDiameter);
-        g.drawOval((int) (x + w - circleDiameter * 1.5), (int) (y + h - circleDiameter * 1.5), circleDiameter, circleDiameter);
+        // OUTER CIRCLE
+        int circleDiameter = outerW / 3;
+        g.fillOval(x, y + circleDiameter / 2, circleDiameter, circleDiameter);
+        g.fillOval(x + w - circleDiameter, (int) (y + h - circleDiameter * 1.5), circleDiameter, circleDiameter);
+        // SLASH
         var p = new Polygon();
-        p.addPoint(x + w - s, y);
-        p.addPoint(x + w, y);
-        p.addPoint(x + s, y + h);
-        p.addPoint(x, y + h);
+        p.addPoint(x + w - s, y + circleDiameter / 2);
+        p.addPoint(x + w, y + circleDiameter / 2);
+        p.addPoint(x + s, y + h - circleDiameter / 2);
+        p.addPoint(x, y + h - circleDiameter / 2);
         g.fillPolygon(p);
+        // INNER CIRCLE
+        g.setColor(background);
+        circleDiameter -= s * 2;
+        g.fillOval(x + s, y + circleDiameter / 2 + s * 2, circleDiameter, circleDiameter);
+        g.fillOval(x + w - circleDiameter - s, (int) (y + h - circleDiameter * 1.5) - s * 2, circleDiameter, circleDiameter);
     }
 
     private Color getColor(char c, char[] chars) {
