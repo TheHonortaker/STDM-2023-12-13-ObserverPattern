@@ -54,7 +54,7 @@ public class DisplayData implements IObservable<DisplayData> {
         Thread thread = new Thread(() -> {
             setThreadRunning(true);
             int intPercentage = 100;
-            while (threadRunning && percentage > 0) {
+            while (threadRunning && intPercentage > 0) {
                 try {
                     setPercentage((double) intPercentage / 100);
                     intPercentage--;
