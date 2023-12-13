@@ -9,6 +9,7 @@ import java.awt.*;
 public class LabelDisplay extends JLabel implements IObserver<DisplayData> {
     public LabelDisplay(DisplayData data) {
         data.subscribe(this);
+        update(data);
         setForeground(Color.WHITE);
     }
 
