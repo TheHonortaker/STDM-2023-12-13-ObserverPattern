@@ -15,9 +15,9 @@ public class DiodeDisplay extends Display {
         super(300, 300, data);
         this.circles = diodes;
         addMouseWheelListener((mouseWheelEvent) -> {
-            if (mouseWheelEvent.getUnitsToScroll() < 0 && circles < 50) {
+            if (mouseWheelEvent.getUnitsToScroll() < 0 && circles < 100) {
                 circles++;
-            } else if (circles > 1) {
+            } else if (mouseWheelEvent.getUnitsToScroll() > 0 && circles > 1) {
                 circles--;
             } else {
                 return;
@@ -29,7 +29,7 @@ public class DiodeDisplay extends Display {
     @Override
     public void draw(Graphics g) {
         int temp = getHeight() / (circles + 1);
-        int drawWidth = temp > getWidth() / 8 ? temp : getWidth() / 8;
+        int drawWidth = Math.max(temp, getWidth() / 8);
         int y = 0;
         int x = getWidth() / 2 - drawWidth / 2;
         for (int i = 0; i < circles; i++) {
