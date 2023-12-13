@@ -1,3 +1,7 @@
+package main.displays;
+
+import main.DisplayData;
+
 import java.awt.*;
 
 public class AnalogDisplay extends Display {

@@ -1,9 +1,15 @@
+package main;
+
+import main.util.IObservable;
+import main.util.IObserver;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class DisplayData implements IObservable<DisplayData> {
     private ArrayList<IObserver<DisplayData>> observers = new ArrayList<>();
     private double percentage;
+    private boolean threadRunning;
 
     public DisplayData(double percentage) {
         this.percentage = percentage;
@@ -18,13 +24,19 @@ public class DisplayData implements IObservable<DisplayData> {
         notifyObservers();
     }
 
-    public void increasePercentage(double increase) {
-        setPercentage(getPercentage() + increase);
+    public boolean isThreadRunning() {
+        return threadRunning;
+    }
+
+    public void setThreadRunning(boolean threadRunning) {
+        this.threadRunning = threadRunning;
+        notifyObservers();
     }
 
     public Thread startRandomizerAsync() {
         Thread thread = new Thread(() -> {
-            while (true) {
+            setThreadRunning(true);
+            while (threadRunning) {
                 try {
                     Random rdm = new Random();
                     setPercentage(rdm.nextDouble(1));
@@ -40,14 +52,18 @@ public class DisplayData implements IObservable<DisplayData> {
 
     public Thread startCountDownAsync() {
         Thread thread = new Thread(() -> {
-            while (percentage > 0) {
+            setThreadRunning(true);
+            int intPercentage = 100;
+            while (threadRunning && percentage > 0) {
                 try {
-                    increasePercentage(-0.01);
+                    setPercentage((double) intPercentage / 100);
+                    intPercentage--;
                     Thread.sleep(100);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
+            setThreadRunning(false);
         });
         thread.start();
         return thread;

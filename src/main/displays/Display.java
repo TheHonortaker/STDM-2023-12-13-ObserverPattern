@@ -1,3 +1,8 @@
+package main.displays;
+
+import main.DisplayData;
+import main.util.IObserver;
+
 import javax.swing.*;
 import java.awt.*;
 
