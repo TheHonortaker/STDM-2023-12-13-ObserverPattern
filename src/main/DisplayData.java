@@ -60,8 +60,8 @@ public class DisplayData implements IObservable<DisplayData> {
             int intPercentage = 100;
             while (threadRunning && intPercentage > 0) {
                 try {
-                    setPercentage((double) intPercentage / 100);
                     intPercentage--;
+                    setPercentage((double) intPercentage / 100);
                     Thread.sleep(100);
                 } catch (Exception ex) {
                     ex.printStackTrace();

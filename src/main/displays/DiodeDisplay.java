@@ -15,7 +15,7 @@ public class DiodeDisplay extends Display {
         super(300, 300, data);
         this.circles = diodes;
         addMouseWheelListener((mouseWheelEvent) -> {
-            if (mouseWheelEvent.getUnitsToScroll() < 0 && circles < 100) {
+            if (mouseWheelEvent.getUnitsToScroll() < 0 && circles < 95) {
                 circles++;
             } else if (mouseWheelEvent.getUnitsToScroll() > 0 && circles > 1) {
                 circles--;
