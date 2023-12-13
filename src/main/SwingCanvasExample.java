@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class SwingCanvasExample extends JFrame {
     public static void main(String[] args) {
-        var data = new DisplayData(1);
+        var data = new DisplayData();
         SwingUtilities.invokeLater(() -> {
             SwingCanvasExample example = new SwingCanvasExample(data);
         });

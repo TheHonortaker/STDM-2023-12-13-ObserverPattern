@@ -11,6 +11,10 @@ public class DisplayData implements IObservable<DisplayData> {
     private double percentage;
     private boolean threadRunning;
 
+    public DisplayData() {
+        this(1);
+    }
+
     public DisplayData(double percentage) {
         this.percentage = percentage;
     }
