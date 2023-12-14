@@ -11,7 +11,14 @@ public abstract class CustomButton extends JButton implements IObserver<DisplayD
         super(text);
         data.subscribe(this);
         setBackground(Color.DARK_GRAY);
-        setForeground(Color.WHITE);
+
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            setForeground(Color.WHITE);
+        } else {
+            setForeground(Color.BLACK);
+        }
+
     }
 
     @Override
