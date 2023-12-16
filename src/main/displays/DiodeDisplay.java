@@ -41,9 +41,9 @@ public class DiodeDisplay extends Display {
     }
 
     private Color getColor(int circle) {
-        double circlePercentage = ((double) 1 / circles);
+        double circlePercentage = 1d / circles;
         double circleFill = data.getPercentage() + circle * circlePercentage;
-        if (circleFill < 1 - circlePercentage) {
+        if (data.getPercentage() == 0 || circleFill < 1 - circlePercentage) { // TODO: mach mal diesen shitcode besser pls
             return Color.RED;
         }
         if (circleFill < 1 - circlePercentage / 2) {
