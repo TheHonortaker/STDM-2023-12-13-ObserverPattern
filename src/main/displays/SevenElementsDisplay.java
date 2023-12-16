@@ -27,7 +27,7 @@ public class SevenElementsDisplay extends Display {
         int drawX = 0;
         for (int i = 0; i < segmentDrawers.length; i++) {
             drawX += digitWidth / 5;
-            segmentDrawers[i] = new SegmentDrawer(drawX, drawY, digitWidth, digitHeight, Color.DARK_GRAY, Color.GREEN, Color.GRAY);
+            segmentDrawers[i] = new SegmentDrawer(drawX, drawY, digitWidth, digitHeight, new Color(40, 40, 40), Color.GREEN, Color.DARK_GRAY);
             drawX += digitWidth;
         }
     }

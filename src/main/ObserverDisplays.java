@@ -4,21 +4,20 @@ import main.buttons.ButtonCancel;
 import main.buttons.ButtonStartCountdown;
 import main.buttons.ButtonStartRandom;
 import main.displays.*;
-import main.util.SegmentDrawer;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SwingCanvasExample extends JFrame {
+public class ObserverDisplays extends JFrame {
     public static void main(String[] args) {
         var data = new DisplayData();
         SwingUtilities.invokeLater(() -> {
-            SwingCanvasExample example = new SwingCanvasExample(data);
+            ObserverDisplays example = new ObserverDisplays(data);
         });
     }
 
-    public SwingCanvasExample(DisplayData data) {
-        setTitle("Java Swing Canvas Beispiel");
+    public ObserverDisplays(DisplayData data) {
+        setTitle("Observer Displays");
         setSize(1210, 328);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
