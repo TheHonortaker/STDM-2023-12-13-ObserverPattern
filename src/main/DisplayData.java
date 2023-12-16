@@ -48,7 +48,7 @@ public class DisplayData implements IObservable<DisplayData> {
                 try {
                     Random rdm = new Random();
                     setPercentage(rdm.nextDouble(1));
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
