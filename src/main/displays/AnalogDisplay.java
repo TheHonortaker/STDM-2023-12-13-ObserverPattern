@@ -1,6 +1,7 @@
 package main.displays;
 
 import main.DisplayData;
+import main.util.Point2D;
 import main.util.Vector2D;
 
 import java.awt.*;
@@ -54,8 +55,11 @@ public class AnalogDisplay extends Display {
             final int x = (int) (radius * Math.cos(angleBow) + midX);
             final int y = (int) (radius * Math.sin(angleBow) + midY);
 
-            Polygon p = new Vector2D(midX, midY, x, y).getPolygon(0.9, 1.05, thickness / 2);
+            Vector2D v = new Vector2D(midX, midY, x, y);
+            Polygon p = v.getPolygon(0.9, 1.05, thickness / 2);
             g.fillPolygon(p);
+            Point2D t = v.multiply(1.25).to;
+            g.drawString(Integer.toString(fromNo + i * (steps - 1)), (int) t.x - thickness, (int) t.y + thickness);
             //g.drawLine(midX, midY, x, y);
 
             currentAngle += anglePer10;
