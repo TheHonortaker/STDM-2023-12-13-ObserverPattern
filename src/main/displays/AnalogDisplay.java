@@ -92,7 +92,6 @@ public class AnalogDisplay extends Display {
         value = Math.max(value, fromNo);
         value -= fromNo;
         value = value / (toNo - fromNo);
-        System.out.println(value);
         return value;
     }
 }

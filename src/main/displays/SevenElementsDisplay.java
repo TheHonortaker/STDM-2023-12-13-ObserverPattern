@@ -34,7 +34,7 @@ public class SevenElementsDisplay extends Display {
 
     @Override
     public void draw(Graphics g) {
-        String display = "  " + (int) (data.getPercentage() * 100) + "%";
+        String display = "  " + data.getIntPercentage() + "%";
         display = display.substring(display.length() - 4);
         for (int i = 0; i < segmentDrawers.length; i++) {
             segmentDrawers[i].draw(g, display.charAt(i));

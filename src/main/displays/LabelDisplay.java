@@ -15,6 +15,6 @@ public class LabelDisplay extends JLabel implements IObserver<DisplayData> {
 
     @Override
     public void update(DisplayData observable) {
-        setText(String.format("         Value: %s%s", (int) (observable.getPercentage() * 100), "%"));
+        setText(String.format("         Value: %s%s", observable.getIntPercentage(), "%"));
     }
 }

@@ -23,6 +23,10 @@ public class DisplayData implements IObservable<DisplayData> {
         return percentage;
     }
 
+    public int getIntPercentage() {
+        return (int) Math.round(getPercentage() * 100);
+    }
+
     public void setPercentage(double percentage) {
         this.percentage = percentage;
         notifyObservers();
@@ -61,7 +65,8 @@ public class DisplayData implements IObservable<DisplayData> {
             while (threadRunning && intPercentage > 0) {
                 try {
                     intPercentage--;
-                    setPercentage((double) intPercentage / 100);
+                    double p = intPercentage / 100d;
+                    setPercentage(p);
                     Thread.sleep(100);
                 } catch (Exception ex) {
                     ex.printStackTrace();

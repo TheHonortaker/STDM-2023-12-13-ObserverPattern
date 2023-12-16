@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class SliderDisplay extends JSlider implements IObserver<DisplayData> {
     public SliderDisplay(DisplayData data) {
-        super(0, 100, (int) (100 * data.getPercentage()));
+        super(0, 100, data.getIntPercentage());
         setBackground(Color.DARK_GRAY);
         data.subscribe(this);
         addChangeListener((changeEvent) -> {
@@ -18,7 +18,7 @@ public class SliderDisplay extends JSlider implements IObserver<DisplayData> {
 
     @Override
     public void update(DisplayData observable) {
-        setValue((int) (100 * observable.getPercentage()));
+        setValue(observable.getIntPercentage());
         setEnabled(!observable.isThreadRunning());
     }
 }
