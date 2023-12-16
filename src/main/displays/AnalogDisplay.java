@@ -25,6 +25,7 @@ public class AnalogDisplay extends Display {
         final int radius = getWidth() / 3;
         drawBase(g, radius, thickness);
         drawScala(g, radius, thickness);
+        drawNeedle(g, radius, thickness);
     }
 
     private void drawBase(Graphics g, final int radius, final int thickness) {
@@ -59,5 +60,39 @@ public class AnalogDisplay extends Display {
 
             currentAngle += anglePer10;
         }
+    }
+
+    private void drawNeedle(Graphics g, final int radius, final int thickness) {
+        final int midX = getWidth() / 2;
+        final int midY = getHeight() / 2;
+        final double value = getScaledPercentageValue();
+        final double angle = 135 + value * 270;
+
+        final double angleBow = angle * Math.PI / 180;
+        final int x = (int) (radius * Math.cos(angleBow) + midX);
+        final int y = (int) (radius * Math.sin(angleBow) + midY);
+
+        Vector2D v = new Vector2D(midX, midY, x, y);
+        Vector2D normalized = v.normalize().multiply(thickness / 2);
+        Polygon p = new Polygon();
+        p.addPoint((int) v.to.x, (int) v.to.y);
+        p.addPoint((int) v.from.add(normalized.to).x, (int) v.from.add(normalized.to).y);
+        p.addPoint((int) v.from.subtract(normalized.to).x, (int) v.from.subtract(normalized.to).y);
+
+        g.setColor(Color.RED);
+        g.fillPolygon(p);
+
+        g.setColor(Color.WHITE);
+        g.fillOval(midX - thickness / 2, midY - thickness / 2, thickness, thickness);
+    }
+
+    private double getScaledPercentageValue() {
+        double value = data.getPercentage() * 100;
+        value = Math.min(value, toNo);
+        value = Math.max(value, fromNo);
+        value -= fromNo;
+        value = value / (toNo - fromNo);
+        System.out.println(value);
+        return value;
     }
 }
