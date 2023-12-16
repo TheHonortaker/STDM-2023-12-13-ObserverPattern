@@ -37,8 +37,8 @@ public class AnalogDisplay extends Display {
         final int midX = getWidth() / 2;
         final int midY = getHeight() / 2;
         p.addPoint(midX, midY);
-        p.addPoint(midX - radius, midY + radius);
-        p.addPoint(midX + radius, midY + radius);
+        p.addPoint(midX - radius - thickness, midY + radius + thickness);
+        p.addPoint(midX + radius + thickness, midY + radius + thickness);
         g.fillPolygon(p);
     }
 
