@@ -41,14 +41,15 @@ public class DisplayData implements IObservable<DisplayData> {
         notifyObservers();
     }
 
-    public Thread startRandomizerAsync() {
+    public Thread startSinusCurveAsync() {
         Thread thread = new Thread(() -> {
             setThreadRunning(true);
+            double t = 0;
             while (threadRunning) {
                 try {
-                    Random rdm = new Random();
-                    setPercentage(rdm.nextDouble(1));
-                    Thread.sleep(100);
+                    setPercentage(-Math.cos(t) / 2 + 0.5);
+                    Thread.sleep(25);
+                    t += 0.01;
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

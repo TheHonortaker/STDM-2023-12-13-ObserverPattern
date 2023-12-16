@@ -4,9 +4,9 @@ import main.DisplayData;
 
 public class ButtonStartRandom extends CustomButton {
     public ButtonStartRandom(DisplayData data) {
-        super("Start Randomizer Data Thread", data);
+        super("Start Sinus Curve Data Thread", data);
         addActionListener((actionEvent) -> {
-            data.startRandomizerAsync();
+            data.startSinusCurveAsync();
         });
     }
 
