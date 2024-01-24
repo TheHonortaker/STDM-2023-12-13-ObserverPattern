@@ -12,7 +12,11 @@ public class DiodeDisplay extends Display {
     }
 
     public DiodeDisplay(DisplayData data, int diodes) {
-        super(300, 300, data);
+        this(data, diodes, 300, 300);
+    }
+
+    public DiodeDisplay(DisplayData data, int diodes, int width, int height) {
+        super(width, height, data);
         this.circles = diodes;
         addMouseWheelListener((mouseWheelEvent) -> {
             if (mouseWheelEvent.getUnitsToScroll() < 0 && circles < 95) {
@@ -38,6 +42,11 @@ public class DiodeDisplay extends Display {
             g.fillOval(x, y, drawWidth, temp);
             y += temp;
         }
+    }
+
+    @Override
+    public Display getExternalDisplay(int width, int height) {
+        return new DiodeDisplay(data, circles, width, height);
     }
 
     private Color getColor(int circle) {

@@ -1,10 +1,13 @@
 package main.displays;
 
+import main.BigDisplay;
 import main.DisplayData;
 import main.util.IObserver;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public abstract class Display extends JPanel implements IObserver<DisplayData> {
     public DisplayData data;
@@ -14,6 +17,31 @@ public abstract class Display extends JPanel implements IObserver<DisplayData> {
         data.subscribe(this);
         this.data = data;
         setBackground(Color.BLACK);
+        MouseListener ml = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.isShiftDown()) {
+                    openExternal();
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        };
+        addMouseListener(ml);
     }
 
     @Override
@@ -23,6 +51,14 @@ public abstract class Display extends JPanel implements IObserver<DisplayData> {
 
     public abstract void draw(Graphics g);
 
+    public abstract Display getExternalDisplay(int width, int height);
+
+    public void openExternal() {
+        SwingUtilities.invokeLater(() -> {
+            new BigDisplay(getExternalDisplay(600, 600));
+        });
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -31,4 +67,5 @@ public abstract class Display extends JPanel implements IObserver<DisplayData> {
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         draw(g);
     }
+
 }

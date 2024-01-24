@@ -15,7 +15,11 @@ public class AnalogDisplay extends Display {
     }
 
     public AnalogDisplay(DisplayData data, int fromNo, int toNo) {
-        super(300, 300, data);
+        this(data, fromNo, toNo, 300, 300);
+    }
+
+    public AnalogDisplay(DisplayData data, int fromNo, int toNo, int width, int height) {
+        super(width, height, data);
         this.fromNo = fromNo;
         this.toNo = toNo;
     }
@@ -27,6 +31,11 @@ public class AnalogDisplay extends Display {
         drawBase(g, radius, thickness);
         drawScala(g, radius, thickness);
         drawNeedle(g, radius, thickness);
+    }
+
+    @Override
+    public Display getExternalDisplay(int width, int height) {
+        return new AnalogDisplay(data, fromNo, toNo, width, height);
     }
 
     private void drawBase(Graphics g, final int radius, final int thickness) {

@@ -10,7 +10,11 @@ public class SevenElementsDisplay extends Display {
     private SegmentDrawer[] segmentDrawers;
 
     public SevenElementsDisplay(DisplayData data) {
-        super(300, 300, data);
+        this(data, 300, 300);
+    }
+
+    public SevenElementsDisplay(DisplayData data, int width, int height) {
+        super(width, height, data);
         PropertyChangeListener changeListener = (propertyChangeEvent) -> {
             initSegmentDrawers();
         };
@@ -39,5 +43,10 @@ public class SevenElementsDisplay extends Display {
         for (int i = 0; i < segmentDrawers.length; i++) {
             segmentDrawers[i].draw(g, display.charAt(i));
         }
+    }
+
+    @Override
+    public Display getExternalDisplay(int width, int height) {
+        return new SevenElementsDisplay(data, width, height);
     }
 }
